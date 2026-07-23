@@ -6,8 +6,8 @@ const Header = () => {
     <section className='relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-500 to-blue-400 px-6 py-12 md:px-10 lg:px-20 shadow-lg'>
       <div className='grid gap-8 lg:grid-cols-2 items-center'>
         {/* left column */}
-        <div className='md:w-full flex flex-col items-start justify-center gap-6'>
-          <p className='text-3xl md:text-4xl lg:text-5xl text-white font-semibold leading-snug'>
+        <div className='md:w-full pt-2 flex flex-col items-start justify-center gap-6'>
+          <p className='text-xl md:text-4xl lg:text-5xl text-white font-semibold leading-snug'>
             Welcome to MediCare! <br /> Your trusted platform for healthcare services
           </p>
 

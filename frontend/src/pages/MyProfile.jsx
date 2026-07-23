@@ -5,17 +5,17 @@ const MyProfile = () => {
 
   const [userData, setUserData] = useState({
 
-    name: "William Hinary",
+    name: "Utkarsh Verma",
     image: assets.profile_pic,
     email: 'williamhinary234@gmail.com',
     phone: '+1 234 567 890',
     address: {
-      line1: "57th Cross,Richmond",
-      line2: "circle,churuch Road,London",
+      line1: "57th insect,semra",
+      line2: "circle,churuch Road,Lucknow",
 
     },
-    gender: "Male",
-    dob: '2000-01-20'
+    gender: "Others",
+    dob: '2005-05-21'
 
   })
 
@@ -77,10 +77,11 @@ const MyProfile = () => {
               ? <select className='max-w-20 bg-gray-100' onChange={(e) => setUserData(prev => ({ ...prev, gender: e.target.value }))} value={userData.gender}>
                 <option value={"male"}>Male</option>
                 <option value={"female"}>Female</option>
+                <option value={"female"}>Other</option>
               </select>
               : <p className='text-gray-400'>{userData.gender}</p>
           }
-          <p className='font-medium'>Birthday:</p>
+          <p className='font-medium'>Birthdate:</p>
           {isEdit
             ? <input className='max-w-28 bg-gray-100' type="date" onChange={(e) => setUserData(prev => ({ ...prev, dob: e.target.value }))} value={userData.dob} />
             : <p className='text-gray-400'>{userData.dob}</p>
