@@ -15,7 +15,7 @@ const [token , setToken] = useState(true);
     <div className='flex items-center justify-between w-full px-8 sm:px-[10%] py-4 mb-5 border-b border-blue-200 bg-sky-50'>
       
       {/* LEFT: Logo */}
-      <img src={assets.logo} alt="MediCare" className='h-12 w-auto cursor-pointer' />
+      <img onClick={() => navigate('/')} src={assets.logo} alt="MediCare" className='h-12 w-auto cursor-pointer' />
       
       {/* CENTER: Navigation Links */}
       <ul className='hidden md:flex items-center gap-6 font-medium text-gray-700'>

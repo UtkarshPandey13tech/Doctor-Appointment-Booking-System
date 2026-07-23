@@ -34,7 +34,6 @@ const Footer = () => {
         {/* Copyright Text */}
         <div>
           <hr className='p-2'/>
-          <p className= 'pt-4 text-sm text-center'>Made with ❤️ By Kesvex Technologies</p>
           <p className='pb-5 text-sm text-center'>Copyright 2026@ MediCare - All Right Reserved</p>
         </div>
     </div>
