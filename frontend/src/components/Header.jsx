@@ -10,7 +10,7 @@ const Header = () => {
             position: 'relative',
             overflow: 'hidden',
             borderRadius: '24px',
-            minHeight: '520px',
+            minHeight: 'clamp(420px, 70vh, 520px)',
             background: darkMode
                 ? 'linear-gradient(135deg, #020817 0%, #0f172a 50%, #1e1b4b 100%)'
                 : 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 55%, #06b6d4 100%)',
@@ -235,7 +235,11 @@ const Header = () => {
 
             <style>{`
                 @media (max-width: 768px) {
-                    .header-grid { grid-template-columns: 1fr !important; padding: 40px 24px !important; }
+                    .header-grid {
+                        grid-template-columns: 1fr !important;
+                        padding: 32px 20px !important;
+                        gap: 24px !important;
+                    }
                 }
             `}</style>
         </section>

@@ -3,6 +3,10 @@
 @import "tailwindcss";
 @tailwind utilities;
 
+@theme {
+  --color-primary: #3b82f6;
+}
+
 /* ===== CSS DESIGN TOKENS ===== */
 :root {
   /* Light Mode */
@@ -60,6 +64,12 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -240,7 +250,7 @@ body {
 
 /* ===== SECTION STYLES ===== */
 .section-heading {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.02em;
@@ -250,6 +260,25 @@ body {
   color: var(--text-secondary);
   font-size: 0.9375rem;
   line-height: 1.6;
+  padding: 0 0.5rem;
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-secondary {
+    font-size: 0.8125rem;
+    padding: 9px 20px;
+  }
 }
 
 /* ===== PAGE CONTAINER ===== */

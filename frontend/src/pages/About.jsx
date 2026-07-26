@@ -4,10 +4,10 @@ import { assets } from '../assets/assets_frontend/assets.js'
 const About = () => {
   return (
     <div>
-      <div className='text-center text-2xl pt-10 text-gray-500 '>
+      <div className='text-center pt-8 text-xl text-gray-500 sm:pt-10 sm:text-2xl'>
         <p>ABOUT <span className='text-gray-700 font-medium'>US</span></p>
       </div>
-      <div className='my-10 flex flex-col md:flex-row gap-12'>
+      <div className='my-8 flex flex-col gap-8 sm:my-10 sm:gap-12 md:flex-row'>
         <img className='w-full md:max-w-[360px]' src={assets.about_image} alt="" />
         <div className='flex flex-col justify-center gap-6 md:w-2/4 text-sm text-gray-600'>
           <p>Welcome To MediCare, Your Trusted Partner In Managing Your Healthcare Needs Conveniently And Efficiently.

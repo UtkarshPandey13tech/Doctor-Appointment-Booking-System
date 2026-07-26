@@ -12,6 +12,8 @@ const AppContextProvider = (props) => {
     // ─── Doctors ──────────────────────────────────────────────
     const [doctors, setDoctors] = useState([]);
 
+    const [token , setToken] = useState('')
+
     const getDoctorsData = async () => {
         try {
             const { data } = await axios.get(backendUrl + '/api/doctor/list');
@@ -96,7 +98,7 @@ const AppContextProvider = (props) => {
         currencySymbol,
         backendUrl,
         // Auth
-        token,
+        token, setToken,
         userData,
         setUserData,
         login,

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const SpecialityMenu = () => {
     return (
-        <section id="speciality" style={{ padding: '60px 0', textAlign: 'center' }}>
+        <section id="speciality" className="px-1 py-10 sm:py-16" style={{ textAlign: 'center' }}>
             <div className="animate-fadeInUp" style={{ marginBottom: '40px' }}>
                 <p style={{
                     color: 'var(--accent-blue)',
@@ -22,12 +22,9 @@ const SpecialityMenu = () => {
                 </p>
             </div>
 
-            <div style={{
-                display: 'flex',
-                gap: '16px',
-                overflowX: 'auto',
+            <div className="scrollbar-hide -mx-1 flex gap-4 overflow-x-auto px-1 pb-3 sm:justify-center sm:overflow-visible sm:flex-wrap"
+                style={{
                 justifyContent: 'flex-start',
-                paddingBottom: '12px',
                 scrollbarWidth: 'none',
             }}>
                 {specialityData.map((item, index) => (

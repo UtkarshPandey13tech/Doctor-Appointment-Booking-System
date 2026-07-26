@@ -2,10 +2,19 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
+const specialities = [
+  'General physician',
+  'Gynecologist',
+  'Dermatologist',
+  'Pediatricians',
+  'Neurologist',
+  'Gastroenterologist',
+];
+
 const Doctors = () => {
   const { speciality } = useParams();
   const [filterDoc, setFilterDoc] = useState([]);
-  const [showFilter,setShowFilter] = useState(false)
+  const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
 
   const { doctors } = useContext(AppContext);
@@ -24,66 +33,44 @@ const Doctors = () => {
 
   return (
     <div>
-      <p className="text-black text-lg font-medium">
+      <p className="text-lg font-medium text-gray-900 dark:text-gray-100">
         Browse through the doctors specialist.
       </p>
 
-      <div className="flex flex-col  sm:flex-row item-start gap-5 my-5">
-      <button className={'py-1px-3 border rounded text-sm transition-all sm:hidden ${showFilter ? "bg-primary text-white" : " "}'} onClick={() =>setShowFilter(prev => !prev)}>Filters</button>
+      <div className="my-5 flex flex-col items-start gap-5 sm:flex-row">
+        <button
+          type="button"
+          className={`rounded border px-3 py-1.5 text-sm transition-all sm:hidden ${showFilter ? 'bg-primary text-white' : 'text-gray-600'}`}
+          onClick={() => setShowFilter((prev) => !prev)}
+        >
+          {showFilter ? 'Hide Filters' : 'Filters'}
+        </button>
 
-        <div className="flex flex-col gap-4 text-sm text-gray-600">
-          <p
-            onClick={() => navigate('/doctors/General physician')}
-            className="w-56 cursor-pointer rounded-lg border border-gray-300 px-4 py-3 transition hover:bg-indigo-50"
-          >
-            General Physician
-          </p>
-
-          <p
-            onClick={() => navigate('/doctors/Gynecologist')}
-            className="w-56 cursor-pointer rounded-lg border border-gray-300 px-4 py-3 transition hover:bg-indigo-50"
-          >
-            Gynecologist
-          </p>
-
-          <p
-            onClick={() => navigate('/doctors/Dermatologist')}
-            className="w-56 cursor-pointer rounded-lg border border-gray-300 px-4 py-3 transition hover:bg-indigo-50"
-          >
-            Dermatologist
-          </p>
-
-          <p
-            onClick={() => navigate('/doctors/Pediatricians')}
-            className="w-56 cursor-pointer rounded-lg border border-gray-300 px-4 py-3 transition hover:bg-indigo-50"
-          >
-            Pediatricians
-          </p>
-
-          <p
-            onClick={() => navigate('/doctors/Neurologist')}
-            className="w-56 cursor-pointer rounded-lg border border-gray-300 px-4 py-3 transition hover:bg-indigo-50"
-          >
-            Neurologist
-          </p>
-
-          <p
-            onClick={() => navigate('/doctors/Gastroenterologist')}
-            className="w-56 cursor-pointer rounded-lg border border-gray-300 px-4 py-3 transition hover:bg-indigo-50"
-          >
-            Gastroenterologist
-          </p>
+        <div className={`w-full flex-shrink-0 flex-col gap-3 text-sm text-gray-600 sm:flex sm:w-56 ${showFilter ? 'flex' : 'hidden'}`}>
+          {specialities.map((item) => (
+            <p
+              key={item}
+              onClick={() => {
+                navigate(`/doctors/${item}`);
+                setShowFilter(false);
+              }}
+              className={`cursor-pointer rounded-lg border px-4 py-3 transition hover:bg-indigo-50 dark:hover:bg-slate-800 ${speciality === item ? 'border-primary bg-indigo-50 text-primary dark:bg-slate-800' : 'border-gray-300'}`}
+            >
+              {item}
+            </p>
+          ))}
         </div>
-        <div className="w-full grid grid-cols- 1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-4 gap-6">
-          {filterDoc.map((item, index) => (
+
+        <div className="grid w-full grid-cols-1 gap-y-4 gap-x-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {filterDoc.map((item) => (
             <div
               onClick={() => navigate(`/appointment/${item._id}`)}
-              className="bg-white border border-blue-100 rounded-xl overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-transform duration-300 shadow-sm"
-              key={index}
+              className="cursor-pointer overflow-hidden rounded-xl border border-blue-100 bg-white shadow-sm transition-transform duration-300 hover:-translate-y-2 dark:bg-slate-900 dark:border-slate-700"
+              key={item._id}
             >
-              <div className="bg-indigo-50 flex items-center justify-center h-56 p-6">
+              <div className="flex h-48 items-center justify-center bg-indigo-50 p-4 sm:h-56 sm:p-6 dark:bg-slate-800">
                 <img
-                  className="object-contain h-44"
+                  className="h-36 object-contain sm:h-44"
                   src={item.image}
                   alt={item.name}
                 />
@@ -91,14 +78,14 @@ const Doctors = () => {
 
               <div className="p-4">
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="w-2 h-2 bg-green-500 rounded-full inline-block"></span>
-                  <span className="text-green-600 font-medium">Available</span>
+                  <span className="inline-block h-2 w-2 rounded-full bg-green-500"></span>
+                  <span className="font-medium text-green-600">Available</span>
                 </div>
 
-                <p className="mt-2 text-lg font-semibold text-gray-900">
+                <p className="mt-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
                   {item.name}
                 </p>
-                <p className="mt-1 text-sm text-gray-600">{item.speciality}</p>
+                <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{item.speciality}</p>
               </div>
             </div>
           ))}

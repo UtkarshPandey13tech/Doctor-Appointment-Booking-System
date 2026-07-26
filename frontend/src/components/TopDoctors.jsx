@@ -24,7 +24,7 @@ const TopDoctors = () => {
     const isLoading = doctors.length === 0;
 
     return (
-        <section style={{ padding: '60px 0', textAlign: 'center' }}>
+        <section className="px-1 py-10 sm:py-16" style={{ textAlign: 'center' }}>
             {/* Heading */}
             <div className="animate-fadeInUp" style={{ marginBottom: '48px' }}>
                 <p style={{
@@ -46,8 +46,8 @@ const TopDoctors = () => {
             {/* Grid */}
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                gap: '24px',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 200px), 1fr))',
+                gap: '20px',
                 marginBottom: '40px',
             }}>
                 {isLoading

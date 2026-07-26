@@ -1,40 +1,50 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../context/AppContext'
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+
 const MyAppointment = () => {
-
-  const { doctors } = useContext(AppContext)
-
+  const { doctors } = useContext(AppContext);
 
   return (
     <div>
-      {/* CSS PROPERTY */}
+      <p className="mt-8 border-b pb-3 font-medium text-zinc-700 sm:mt-12 dark:text-zinc-300">
+        My Appointment
+      </p>
 
-      <p className='pb-3 mt-12 font-medium text-zinc-700 border-b'> My Appointment </p>
       <div>
-        {doctors.slice(0, 2,).map((item, index) => (
-          <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b' key={index}>
+        {doctors.slice(0, 2).map((item, index) => (
+          <div
+            className="flex flex-col gap-4 border-b py-4 sm:flex-row sm:items-center sm:gap-6 sm:py-6"
+            key={index}
+          >
+            <div className="shrink-0">
+              <img className="w-28 rounded-lg bg-indigo-50 sm:w-32 dark:bg-slate-800" src={item.image} alt={item.name} />
+            </div>
 
-            <div>
-              <img className='w-32 bg-indigo-50' src={item.image} alt="" />
-            </div>
-            <div className='felx-1 text-sm text-zinc-600'>
-              <p className='text-neutral-800 font-semibold'>{item.name}</p>
+            <div className="min-w-0 flex-1 text-sm text-zinc-600 dark:text-zinc-400">
+              <p className="font-semibold text-neutral-800 dark:text-neutral-200">{item.name}</p>
               <p>{item.speciality}</p>
-              <p className='text-zinc-700 font-medium mt-1'>Address:</p>
-              <p className='text-xs'>{item.address.line1}</p>
-              <p className='text-xs'>{item.address.line2}</p>
-              <p className='text-xs mt-1'><span className='text-sm text-neutral-700 font-medium' >Date & Time:</span> 25,july,20026 | 8:30 PM</p>
+              <p className="mt-1 font-medium text-zinc-700 dark:text-zinc-300">Address:</p>
+              <p className="text-xs">{item.address.line1}</p>
+              <p className="text-xs">{item.address.line2}</p>
+              <p className="mt-1 text-xs">
+                <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Date & Time:</span>{' '}
+                25, July, 2026 | 8:30 PM
+              </p>
             </div>
-            <div></div>
-            <div className='pl-150 flex flex-col gap-5 justify-center'>
-              <button className='text-sm text-stone-500 sm:min-w-48 py-2 border hover:bg-primary hover:text-blue-500 transition-all duration-300 cursor-pointer'>Pay Online</button>
-              <button className='text-sm text-stone-500 sm:min-w-48 py-2 border hover:bg-primary hover:text-blue-500 transition-all duration-300 cursor-pointer'>Cancel appointment</button>
+
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:min-w-44">
+              <button className="cursor-pointer border py-2 text-sm text-stone-500 transition-all duration-300 hover:bg-primary hover:text-blue-500 dark:border-slate-600">
+                Pay Online
+              </button>
+              <button className="cursor-pointer border py-2 text-sm text-stone-500 transition-all duration-300 hover:bg-primary hover:text-blue-500 dark:border-slate-600">
+                Cancel appointment
+              </button>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MyAppointment
+export default MyAppointment;

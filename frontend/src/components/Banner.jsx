@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom'
 const Banner = () => {
     const navigate = useNavigate()
   return (
-    <div className='flex bg-gradient-to-r from-blue-500 to-blue-400 rounded-lg px-6 sm:px-10 md:px-14 lg:px-16 my-20 md:mx-10'>
+    <div className='mx-0 my-12 flex flex-col rounded-lg bg-gradient-to-r from-blue-500 to-blue-400 px-6 sm:my-20 sm:px-10 md:flex-row md:px-14 lg:px-16'>
 
         {/* left side */}
-        <div className='flex-1 py-8 sm:py-10 md:py-16 lg-py-24 lg:pl-5'>
-            <div className='text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-white'>
+        <div className='flex-1 py-8 sm:py-10 md:py-16 lg:py-24 lg:pl-5'>
+            <div className='text-xl font-semibold text-white sm:text-2xl md:text-3xl lg:text-5xl'>
                 <p>Book Appointment</p>
                 <p className='mt-4'>With 100+ Trusted Doctors</p>
 

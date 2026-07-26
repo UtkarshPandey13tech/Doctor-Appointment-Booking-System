@@ -26,7 +26,7 @@ const MyProfile = () => {
 
     // CSS PROPERTY USES
 
-    <div className='max-w-lg  flex flex-col gap-2 text-sm'>
+    <div className='mx-auto flex w-full max-w-lg flex-col gap-2 text-sm sm:max-w-2xl'>
 
       <img className='w-36 rounded' src={userData.image} alt="" />
       {
@@ -39,7 +39,7 @@ const MyProfile = () => {
       <hr className='bg-zinc-400 h-[1px] border-none' />
       <div>
         <p className='text-neutral-500 underline mt-3'> CONTACT INFORMATION</p>
-        <div className='grid grid-cols-[1fr_3fr] gap-y-2.5 mt-3 text-neutral-700'>
+        <div className='grid grid-cols-1 gap-y-2.5 mt-3 text-neutral-700 sm:grid-cols-[1fr_3fr] dark:text-neutral-300'>
 
           <p className='font-medium'>Email id:</p>
           <p className='text-blue-500'>{userData.email}</p>
@@ -69,7 +69,7 @@ const MyProfile = () => {
       </div>
       <div>
         <p className='text-neutral-500 underline mt-3'>BASIC INFORMATION</p>
-        <div className='grid grid-cols-[1fr_3fr] gap-y-2.5 mt-3 text-neutral-700'>
+        <div className='grid grid-cols-1 gap-y-2.5 mt-3 text-neutral-700 sm:grid-cols-[1fr_3fr] dark:text-neutral-300'>
 
           <p className='font-medium'>Gender:</p>
           {
