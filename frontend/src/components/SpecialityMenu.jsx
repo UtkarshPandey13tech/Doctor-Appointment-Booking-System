@@ -1,94 +1,24 @@
-import React from 'react';
-import { specialityData } from '../assets/assets_frontend/assets';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { specialityData } from '../assets/assets_frontend/assets'
+import { Link } from 'react-router-dom'
 
 const SpecialityMenu = () => {
-    return (
-        <section id="speciality" style={{ padding: '60px 0', textAlign: 'center' }}>
-            <div className="animate-fadeInUp" style={{ marginBottom: '40px' }}>
-                <p style={{
-                    color: 'var(--accent-blue)',
-                    fontWeight: '600',
-                    fontSize: '0.8125rem',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    marginBottom: '12px',
-                }}>
-                    Find Your Specialist
-                </p>
-                <h2 className="section-heading" style={{ marginBottom: '14px' }}>Browse by Speciality</h2>
-                <p className="section-subtext" style={{ maxWidth: '440px', margin: '0 auto' }}>
-                    Browse trusted doctors across all specialities and schedule hassle-free appointments.
-                </p>
-            </div>
+  return (
+    <div className='flex flex-col items-center gap-4 py-16 text-gray-800' id='speciality'>
+        <h1 className='text-3xl font-medium'>Find by Speciality</h1>
+        <p className='w-1/3 text-center text-sm'>Go through the list of trusted doctors, schedule your appointment hassle free</p>
+        <div className='flex sm:justify-center gap-4 pt-5 w-full overflow-scroll'>
+          {specialityData.map((item,index)=>(
+            <Link onClick={() => scrollTo(0,0)} className='flex flex-col items-center text-xs cursor-pointer flex-shrink-0 hover:translate-y-[-10px] transition-all duration-300' key={index} to={`/doctors/${item.speciality}`}>
+                <img className='w-16 sm:w-24 mb-2' src={item.image} alt="" />
+                <p>{item.speciality}</p>
 
-            <div style={{
-                display: 'flex',
-                gap: '16px',
-                overflowX: 'auto',
-                justifyContent: 'flex-start',
-                paddingBottom: '12px',
-                scrollbarWidth: 'none',
-            }}>
-                {specialityData.map((item, index) => (
-                    <Link
-                        key={index}
-                        to={`/doctors/${item.speciality}`}
-                        onClick={() => scrollTo(0, 0)}
-                        className="animate-fadeInUp"
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            gap: '12px',
-                            flexShrink: 0,
-                            textDecoration: 'none',
-                            animationDelay: `${index * 0.08}s`,
-                        }}
-                    >
-                        <div style={{
-                            width: '90px',
-                            height: '90px',
-                            borderRadius: '20px',
-                            background: 'var(--bg-card)',
-                            border: '1px solid var(--border-color)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            transition: 'all 0.3s ease',
-                            boxShadow: 'var(--shadow-card)',
-                            cursor: 'pointer',
-                            padding: '16px',
-                        }}
-                            onMouseEnter={e => {
-                                e.currentTarget.style.transform = 'translateY(-8px)';
-                                e.currentTarget.style.boxShadow = '0 16px 32px rgba(59,130,246,0.25)';
-                                e.currentTarget.style.borderColor = 'var(--accent-blue)';
-                                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(6,182,212,0.05))';
-                            }}
-                            onMouseLeave={e => {
-                                e.currentTarget.style.transform = 'translateY(0)';
-                                e.currentTarget.style.boxShadow = 'var(--shadow-card)';
-                                e.currentTarget.style.borderColor = 'var(--border-color)';
-                                e.currentTarget.style.background = 'var(--bg-card)';
-                            }}
-                        >
-                            <img src={item.image} alt={item.speciality} style={{ width: '52px', height: '52px', objectFit: 'contain' }} />
-                        </div>
-                        <span style={{
-                            fontSize: '0.75rem',
-                            fontWeight: '600',
-                            color: 'var(--text-secondary)',
-                            textAlign: 'center',
-                            maxWidth: '90px',
-                        }}>
-                            {item.speciality}
-                        </span>
-                    </Link>
-                ))}
-            </div>
-        </section>
-    );
-};
+            </Link>
+          ) )}
+        </div>
 
-export default SpecialityMenu;
+    </div>
+  )
+}
+
+export default SpecialityMenu
