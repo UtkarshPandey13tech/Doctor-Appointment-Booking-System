@@ -1,40 +1,117 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
+const SkeletonCard = () => (
+    <div style={{
+        borderRadius: '16px',
+        overflow: 'hidden',
+        border: '1px solid var(--border-color)',
+        background: 'var(--bg-card)',
+    }}>
+        <div className="skeleton" style={{ height: '200px' }} />
+        <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div className="skeleton" style={{ height: '12px', width: '60%' }} />
+            <div className="skeleton" style={{ height: '18px', width: '80%' }} />
+            <div className="skeleton" style={{ height: '14px', width: '50%' }} />
+        </div>
+    </div>
+);
 
 const TopDoctors = () => {
-    const navigate = useNavigate()
-    const {doctors} = useContext(AppContext)
+    const navigate = useNavigate();
+    const { doctors } = useContext(AppContext);
+    const isLoading = doctors.length === 0;
 
-  return (
-    <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
-        <h1 className='text-3xl font-medium'>Top Doctors to Book</h1>
-        <p className='sm:w-1/3 text-center text-sm text-gray-600'>Simply browse through our extensive list of trusted doctors.</p>
+    return (
+        <section style={{ padding: '60px 0', textAlign: 'center' }}>
+            {/* Heading */}
+            <div className="animate-fadeInUp" style={{ marginBottom: '48px' }}>
+                <p style={{
+                    color: 'var(--accent-blue)',
+                    fontWeight: '600',
+                    fontSize: '0.8125rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    marginBottom: '12px',
+                }}>
+                    Our Specialists
+                </p>
+                <h2 className="section-heading" style={{ marginBottom: '14px' }}>Top Doctors to Book</h2>
+                <p className="section-subtext" style={{ maxWidth: '480px', margin: '0 auto' }}>
+                    Browse through our extensive list of verified and trusted healthcare professionals.
+                </p>
+            </div>
 
-        <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-8 px-3 sm:px-0'>
-            {doctors.slice(0,8).map((item,index)=>(
-                <div onClick={()=>{navigate(`/appointment/${item._id}`);scrollTo(0,0)}} className='bg-white border border-blue-100 rounded-xl overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-transform duration-300 shadow-sm' key={index}>
-                   <div className='bg-indigo-50 flex items-center justify-center h-56 p-6'>
-                     <img className='object-contain h-44' src={item.image} alt={item.name} />
-                   </div>
+            {/* Grid */}
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                gap: '24px',
+                marginBottom: '40px',
+            }}>
+                {isLoading
+                    ? Array(8).fill(0).map((_, i) => <SkeletonCard key={i} />)
+                    : doctors.slice(0, 8).map((item, index) => (
+                        <div
+                            key={index}
+                            id={`doctor-card-${item._id}`}
+                            onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0); }}
+                            className="doctor-card animate-fadeInUp"
+                            style={{ animationDelay: `${index * 0.07}s` }}
+                        >
+                            {/* Image area */}
+                            <div style={{
+                                background: 'linear-gradient(135deg, var(--bg-surface), var(--bg-card))',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: '200px',
+                                padding: '16px',
+                                position: 'relative',
+                                overflow: 'hidden',
+                            }}>
+                                <div style={{
+                                    position: 'absolute', inset: 0,
+                                    background: 'radial-gradient(circle at 70% 30%, rgba(59,130,246,0.08), transparent 60%)',
+                                }} />
+                                <img
+                                    src={item.image}
+                                    alt={item.name}
+                                    style={{ height: '170px', objectFit: 'contain', position: 'relative', zIndex: 1 }}
+                                />
+                            </div>
 
-                   <div className='p-4'>
-                    <div className='flex items-center gap-2 text-sm'>
-                        <span className='w-2 h-2 bg-green-500 rounded-full inline-block'></span>
-                        <span className='text-green-600 font-medium'>Available</span>
-                    </div>
+                            {/* Info */}
+                            <div style={{ padding: '16px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '8px' }}>
+                                    <span style={{
+                                        width: '8px', height: '8px',
+                                        background: '#10b981',
+                                        borderRadius: '50%',
+                                        boxShadow: '0 0 6px rgba(16,185,129,0.5)',
+                                        display: 'inline-block',
+                                        flexShrink: 0,
+                                    }} />
+                                    <span style={{ color: '#10b981', fontSize: '0.8125rem', fontWeight: '600' }}>Available</span>
+                                </div>
+                                <p style={{ fontWeight: '700', fontSize: '1rem', color: 'var(--text-primary)', margin: '0 0 4px' }}>{item.name}</p>
+                                <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: 0 }}>{item.speciality}</p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
 
-                    <p className='mt-2 text-lg font-semibold text-gray-900'>{item.name}</p>
-                    <p className='mt-1 text-sm text-gray-600'>{item.speciality}</p>
-                   </div>
+            <button
+                id="see-more-doctors-btn"
+                onClick={() => { navigate('/doctors'); scrollTo(0, 0); }}
+                className="btn-secondary"
+            >
+                View All Doctors →
+            </button>
+        </section>
+    );
+};
 
-                </div>
-            ))}
-        </div>
-        <button onClick={()=>{navigate('/doctors'); scrollTo(0,0)}} className='mt-8 px-12 py-2 bg-indigo-400 text-white rounded-full shadow-sm cursor-pointer'>See More</button>
-        </div>
-  )
-}
-
-export default TopDoctors
+export default TopDoctors;
