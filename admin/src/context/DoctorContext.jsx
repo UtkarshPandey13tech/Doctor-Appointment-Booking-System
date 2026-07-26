@@ -1,23 +1,26 @@
-import { createContext } from "react";
+import { createContext, useContext, useEffect } from "react";
+import { AdminContext } from "./AdminContext";
 
 export const DoctorContext = createContext()
 
-const DoctorContextProvider =(props) => {
-
-    // const backendUrl = import.meta.env.VITE_BACKEND_URL 
-
-    // const [dToken, setDToken] = useState('')
+const DoctorContextProvider = (props) => {
+    const { doctors, aToken, getAllDoctors } = useContext(AdminContext);
     const value = {
-        // dToken , setDToken,
-        // backendUrl,
+        doctors,
+        aToken,
+        getAllDoctors,
+    };
 
-    }
-    return(
-        <DoctorContext.Provider value ={value}>
+    useEffect(() => {
+        if (aToken) {
+            getAllDoctors()
+        }
+    }, [aToken])
+    return (
+        <DoctorContext.Provider value={value}>
             {props.children}
         </DoctorContext.Provider>
     )
-
 }
 
 export default DoctorContextProvider

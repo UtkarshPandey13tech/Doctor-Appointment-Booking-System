@@ -1,12 +1,82 @@
 import React from "react";
 import { assets } from "../../assets/assets_admin/assets";
+import { useState } from "react";
+import { AdminContext } from "../../context/AdminContext"
+import { toast } from 'react-toastify';
+import { useContext } from "react";
+import axios from "axios";
 
 const inputClass =
   "w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-700 outline-none transition focus:border-blue-500 focus:bg-white";
 
 const AddDoctor = () => {
+
+  const [docImg, setDocImg] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [experience, setExperience] = useState('1 year')
+  const [fees, setFees] = useState('')
+  const [about, setAbout] = useState('')
+  const [speciality, setSpeciality] = useState('General Physician')
+  const [degree, setDegree] = useState('')
+  const [address1, setAddress1] = useState('')
+  const [address2, setAddress2] = useState('')
+
+  const { backendUrl, aToken } = useContext(AdminContext)
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    try {
+      if (!docImg) {
+        return toast.error("Please upload a doctor image")
+
+      }
+      const formData = new FormData();
+
+      formData.append('image', docImg);
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('experience', experience);
+      formData.append('fees', Number(fees));
+      formData.append('about', about);
+      formData.append('speciality', speciality);
+      formData.append('degree', degree);
+      formData.append('address', JSON.stringify({ line1: address1, line2: address2 }));
+      //console log formdata
+      formData.forEach((value, key) => {
+        console.log(`${key} : ${value}`);
+      })
+      const { data } = await axios.post(backendUrl + '/api/admin/add-doctor', formData, {
+        headers: { aToken }
+      })
+
+      if (data.success) {
+        toast.success(data.message)
+        setDocImg(false)
+        setName('')
+        setPassword('')
+        setEmail('')
+        setAddress1('')
+        setAddress2('')
+        setDegree('')
+        setAbout('')
+        setFees('')
+      }
+      else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+      console.log(error)
+
+    }
+  }
+
   return (
-    <form className="m-5 w-full">
+    <form onSubmit={onSubmitHandler} className="m-5 w-full">
       <div className="mb-4">
         <h2 className="text-lg font-semibold text-gray-800">Add Doctor</h2>
         <p className="text-sm text-gray-500">
@@ -19,7 +89,7 @@ const AddDoctor = () => {
           <label htmlFor="doc-img" className="cursor-pointer">
             <img
               className="h-16 w-16 rounded-full border border-gray-200 bg-white object-cover p-2"
-              src={assets.upload_area}
+              src={docImg ? URL.createObjectURL(docImg) : assets.upload_area}
               alt="Upload doctor"
             />
           </label>
@@ -29,7 +99,7 @@ const AddDoctor = () => {
               PNG, JPG, or JPEG up to 5MB
             </p>
           </div>
-          <input type="file" id="doc-img" hidden />
+          <input onChange={(e) => setDocImg(e.target.files[0])} type="file" id="doc-img" hidden />
         </div>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -38,28 +108,28 @@ const AddDoctor = () => {
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 Doctor Name
               </label>
-              <input type="text" placeholder="Name" required className={inputClass} />
+              <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Name" required className={inputClass} />
             </div>
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 Doctor Email
               </label>
-              <input type="email" placeholder="Email" required className={inputClass} />
+              <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" placeholder="Email" required className={inputClass} />
             </div>
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 Doctor Password
               </label>
-              <input type="password" placeholder="Password" required className={inputClass} />
+              <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" placeholder="Password" required className={inputClass} />
             </div>
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 Experience
               </label>
-              <select className={inputClass}>
+              <select onChange={(e) => setExperience(e.target.value)} value={experience} className={inputClass}>
                 <option value="">Choose Option</option>
                 <option value="1 Year">1 Year</option>
                 <option value="2 Year">2 Year</option>
@@ -78,7 +148,7 @@ const AddDoctor = () => {
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 Fees
               </label>
-              <input type="number" placeholder="Fees" required className={inputClass} />
+              <input onChange={(e) => setFees(e.target.value)} value={fees} type="number" placeholder="Fees" required className={inputClass} />
             </div>
           </div>
 
@@ -87,7 +157,7 @@ const AddDoctor = () => {
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 Speciality
               </label>
-              <select className={inputClass}>
+              <select onChange={(e) => setSpeciality(e.target.value)} value={speciality} className={inputClass}>
                 <option value="">Choose any option</option>
                 <option value="General Physician">General Physician</option>
                 <option value="Gynecologist">Gynecologist</option>
@@ -100,17 +170,17 @@ const AddDoctor = () => {
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
-                Education
+                Degree
               </label>
-              <input type="text" placeholder="Education" required className={inputClass} />
+              <input onChange={(e) => setDegree(e.target.value)} value={degree} type="text" placeholder="Education" required className={inputClass} />
             </div>
 
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 Address
               </label>
-              <input type="text" placeholder="Address 1" className={inputClass} />
-              <input type="text" placeholder="Address 2" className={`${inputClass} mt-2`} />
+              <input onChange={(e) => setAddress1(e.target.value)} value={address1} type="text" placeholder="Address 1" className={inputClass} />
+              <input onChange={(e) => setAddress2(e.target.value)} value={address2} type="text" placeholder="Address 2" className={`${inputClass} mt-2`} />
             </div>
           </div>
         </div>
@@ -120,6 +190,7 @@ const AddDoctor = () => {
             About Doctor
           </label>
           <textarea
+            onChange={(e) => setAbout(e.target.value)} value={about}
             placeholder="Write about the doctor"
             rows={5}
             required
