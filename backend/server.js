@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/mongodb.js'
@@ -31,10 +32,13 @@ app.use('/api/doctor' ,doctorRouter)
 
 app.use('/api/user',userRouter)
 
-app.get('/' ,(req,res) => {
-    res.send('api is working')
+// Serve frontend
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-})
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 app.listen(port, ()=> console.log("Server Started" , port))
 
