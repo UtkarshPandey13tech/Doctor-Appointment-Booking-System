@@ -11,13 +11,10 @@ const DoctorContextProvider = (props) => {
         getAllDoctors,
     };
 
-
     useEffect(() => {
         if (aToken) {
             getAllDoctors()
-
         }
-
     }, [aToken])
     return (
         <DoctorContext.Provider value={value}>

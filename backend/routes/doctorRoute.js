@@ -7,3 +7,4 @@ doctorRouter.get('/list', doctorList);
 //doctorRouter.put('/availability', changeAvailability);
 
 export default doctorRouter;
+
