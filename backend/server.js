@@ -5,6 +5,7 @@ import connectDB from './config/mongodb.js'
 import dns from 'dns'
 import connectCloudinary from './config/cloudinary.js'
 import adminRouter from './routes/adminRoute.js'
+import doctorRouter from './routes/doctorRoute.js'
 
 dns.setServers(['1.1.1.1' ,'8.8.8.8'])
 
@@ -24,6 +25,7 @@ app.use(cors());// allow forntend to connect with backend
 
 //api endpoints
 app.use('/api/admin' ,adminRouter)
+app.use('/api/doctor' ,doctorRouter) 
 //localhost:4000/api/admin/add-doctor
 
 app.get('/' ,(req,res) => {
