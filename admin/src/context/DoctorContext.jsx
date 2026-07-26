@@ -3,7 +3,13 @@ import { createContext } from "react";
 export const DoctorContext = createContext()
 
 const DoctorContextProvider =(props) => {
+
+    // const backendUrl = import.meta.env.VITE_BACKEND_URL 
+
+    // const [dToken, setDToken] = useState('')
     const value = {
+        // dToken , setDToken,
+        // backendUrl,
 
     }
     return(
@@ -11,6 +17,7 @@ const DoctorContextProvider =(props) => {
             {props.children}
         </DoctorContext.Provider>
     )
+
 }
 
 export default DoctorContextProvider
