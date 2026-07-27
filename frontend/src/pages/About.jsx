@@ -21,15 +21,15 @@ const About = () => {
         <p>WHY <span className='text-gray-700 font-sembold'>CHOOSE US</span></p>
       </div>
       <div className='flex flex-col md:flex-row mb-20'>
-        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer'>
+        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white hover:bg-blue-500 transition-all duration-300 text-gray-600 cursor-pointer'>
           <b>EFFICIENCY</b>
           <p>Streamlined Appointment Scheduling That Fits Into Your Busy Lifestyle</p>
         </div>
-        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer'>
+        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white hover:bg-blue-500 transition-all duration-300 text-gray-600 cursor-pointer'>
           <b>CONVENIENCE</b>
           <p>Acces To A Network Of Trusted Healthcare Professionals in Your Area</p>
         </div>
-        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer'>
+        <div className='border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white hover:bg-blue-500 transition-all duration-300 text-gray-600 cursor-pointer'>
           <b>PERSONLIZATION</b>
           <p>Tailored Recommendations And Reminders To Support Your Unique Health Journey</p>
         </div>
