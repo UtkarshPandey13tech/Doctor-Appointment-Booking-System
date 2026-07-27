@@ -9,7 +9,7 @@ const appointmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    doctId: {
+    docId: {
         type: String,
         required: true
     },
@@ -26,6 +26,7 @@ const appointmentSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
+
     docData: {
         type: Object,
         required: true

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { toast } from 'react-toastify'
-import {assets} from '../assets/assets_frontend/assets.js'
+import { assets } from '../assets/assets_frontend/assets.js'
 
 
 export const AppContext = createContext()
@@ -10,11 +10,11 @@ const AppContextProvider = (props) => {
     const currencySymbol = '$'
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-    
+
     const [doctors, setDoctors] = useState([])
-     //avoid reload
-    const [token,setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):false )
-    const [userData , setUserData] = useState(false)
+    //avoid reload
+    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
+    const [userData, setUserData] = useState(false)
 
     const getDoctorsData = async () => {
         try {
@@ -33,8 +33,8 @@ const AppContextProvider = (props) => {
 
     const loadUserProfileData = async () => {
         try {
-            
-            const {data} = await axios.get(backendUrl + '/api/user/get-profile' , {headers:{token}})
+
+            const { data } = await axios.get(backendUrl + '/api/user/get-profile', { headers: { token } })
             if (data.success) {
                 setUserData(data.userData)
             }
@@ -42,18 +42,18 @@ const AppContextProvider = (props) => {
                 toast.error(data.message || 'Failed to load profile')
             }
         } catch (error) {
-             console.error(error);
+            console.error(error);
             toast.error(error.message);
-            
+
         }
     }
 
     const value = {
-        doctors,
+        doctors, getDoctorsData,
         currencySymbol,
-        token ,setToken,
+        token, setToken,
         backendUrl,
-        userData , setUserData, 
+        userData, setUserData,
         loadUserProfileData
     }
 
@@ -65,12 +65,12 @@ const AppContextProvider = (props) => {
 
         if (token) {
             loadUserProfileData()
-      
-        } else{
+
+        } else {
             setUserData(false)
         }
 
-    },[token])
+    }, [token])
 
     return (
         <AppContext.Provider value={value}>
