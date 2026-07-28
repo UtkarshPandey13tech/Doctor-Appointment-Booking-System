@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets_frontend/assets'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -13,10 +14,18 @@ const Footer = () => {
         <div>
           <p className="mb-4 text-lg font-semibold text-slate-800">COMPANY</p>
           <ul className="flex flex-col gap-2">
-            <li className="hover:text-sky-700">Home</li>
-            <li className="hover:text-sky-700">About us</li>
-            <li className="hover:text-sky-700">Contact Us</li>
-            <li className="hover:text-sky-700">Privacy Policy</li>
+            <NavLink to="/" className={({ isActive }) => `transition ${isActive ? 'text-sky-700' : 'hover:bg-slate-50 hover:text-sky-700'}`}>
+              <li className="hover:text-sky-700">Home</li>
+            </NavLink>
+            <NavLink to="/about" className={({ isActive }) => `transition ${isActive ? 'text-sky-700' : 'hover:bg-slate-50 hover:text-sky-700'}`}>
+              <li className="hover:text-sky-700">About us</li>
+            </NavLink>
+            <NavLink to="/contact" className={({ isActive }) => `transition ${isActive ? ' text-sky-700 ' : 'hover:bg-slate-50 hover:text-sky-700'}`}>
+                <li className="hover:text-sky-700">Contact Us</li>
+            </NavLink>
+            <NavLink to="/doctors" className={({ isActive }) => `transition ${isActive ? ' text-sky-700 ' : 'hover:bg-slate-50 hover:text-sky-700'}`}>
+                <li className="hover:text-sky-700">Privacy Policy</li>
+            </NavLink>
           </ul>
         </div>
 

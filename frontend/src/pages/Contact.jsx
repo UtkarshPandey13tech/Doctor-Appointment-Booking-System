@@ -14,10 +14,10 @@ const Contact = () => {
           <div className='flex flex-col items-start justify-center gap-6'>
             <div>
               <p className='text-lg font-semibold text-slate-700'>OUR OFFICE</p>
-              <p className='mt-2 leading-7 text-slate-600'>54709 Willms Station <br />Suite 350, Washington, USA</p>
+              <p className='mt-2 leading-7 text-slate-600'>294/A <br />Patel Complex , Chinhat ,Lucknow, India</p>
             </div>
             <div>
-              <p className='leading-7 text-slate-600'>+91-1234567890 <br />Email: greatstackdev2gmail.com</p>
+              <p className='leading-7 text-slate-600'>+91 9999999999  <br />Email: medicareteam@gmail.com</p>
             </div>
             <div>
               <p className='text-lg font-semibold text-slate-700'>Careers at MediCare</p>
