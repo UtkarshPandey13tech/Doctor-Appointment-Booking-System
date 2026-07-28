@@ -1,13 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @tailwind base;
 @tailwind components;
-@import "tailwindcss";      
+@import "tailwindcss";
 @tailwind utilities;
 
-::-webkit-scrollbar{
-    @apply hidden
+:root {
+  color-scheme: light;
+  font-family: Outfit, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #0f172a;
+  background-color: #f7fbff;
 }
 
-*{
-    font-family: Outfit;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 28%), linear-gradient(135deg, #f8fbff 0%, #f2f7ff 45%, #fdfefe 100%);
+  color: #0f172a;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  @apply hidden;
 }

@@ -1,24 +1,31 @@
-
 import React from 'react'
 import { assets } from '../assets/assets_frontend/assets.js'
 
 const Contact = () => {
   return (
-    <div>
-      <div className='text-center text-2xl pt-10 text-gray-500'>
-        <p>CONTACT  <span className='text-gray-700 font-semibold'>US</span></p>
-      </div>
-      <div className='my-10 flex flex-col justify-center md:flex-row gap-10 mb-28 text-sm'>
-        <img className='w-full md:max-w-[360px]' src={assets.contact_image} alt="" />
-        <div className='flex flex-col justify-center items-start gap-6'>
-          <p className='font-semibold text-lg text-gray-600'> OUR OFFICE</p>
-          <p className='text-gray-500'>54709 Willms Station <br />Suite 350, Washnigton, USA</p>
-          <p className='text-gray-500'>+91-1234567890 <br />Email: greatstackdev2gmail.com</p>
-          <p className='font-semibold text-lg text-gray-600'>Careers at MediCare</p>
-          <p className='text-gray-500'>Learn More About Our Team And Job Openings</p>
-          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
+    <div className='py-4'>
+      <div className='rounded-[28px] border border-slate-200/80 bg-white/80 px-6 py-10 shadow-[0_20px_60px_-25px_rgba(15,23,42,0.18)] backdrop-blur-sm'>
+        <div className='text-center text-2xl text-slate-500'>
+          <p>CONTACT <span className='font-semibold text-slate-800'>US</span></p>
         </div>
 
+        <div className='mt-8 flex flex-col justify-center gap-8 text-sm md:flex-row'>
+          <img className='w-full rounded-[24px] object-cover md:max-w-[360px]' src={assets.contact_image} alt="Contact" />
+          <div className='flex flex-col items-start justify-center gap-6'>
+            <div>
+              <p className='text-lg font-semibold text-slate-700'>OUR OFFICE</p>
+              <p className='mt-2 leading-7 text-slate-600'>54709 Willms Station <br />Suite 350, Washington, USA</p>
+            </div>
+            <div>
+              <p className='leading-7 text-slate-600'>+91-1234567890 <br />Email: greatstackdev2gmail.com</p>
+            </div>
+            <div>
+              <p className='text-lg font-semibold text-slate-700'>Careers at MediCare</p>
+              <p className='mt-2 text-slate-600'>Learn more about our team and job openings.</p>
+            </div>
+            <button className='rounded-full border border-slate-300 px-8 py-3 text-sm font-medium text-slate-700 transition-all duration-300 hover:bg-slate-900 hover:text-white'>Explore Jobs</button>
+          </div>
+        </div>
       </div>
     </div>
   )
