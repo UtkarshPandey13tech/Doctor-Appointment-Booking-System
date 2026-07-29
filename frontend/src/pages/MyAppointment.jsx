@@ -12,6 +12,14 @@ const MyAppointment = () => {
 
   const months = ["", "Jan", "Feb", "mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+
+  const slotDateFormat = (slotDate) => {
+    if (!slotDate || typeof slotDate !== 'string') return ''
+    const dateArray = slotDate.split('_')
+    if (!Array.isArray(dateArray) || dateArray.length < 3) return slotDate
+    return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
+  }
+
   const navigate = useNavigate()
 
   const renderValue = (v) => {
@@ -20,12 +28,7 @@ const MyAppointment = () => {
     return v
   }
 
-  const slotDateFormat = (slotDate) => {
-    if (!slotDate || typeof slotDate !== 'string') return ''
-    const dateArray = slotDate.split('_')
-    if (!Array.isArray(dateArray) || dateArray.length < 3) return slotDate
-    return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
-  }
+ 
 
   const getUserAppointments = async () => {
     try {

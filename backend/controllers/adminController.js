@@ -114,7 +114,32 @@ const allDoctors = async (req, res) => {
 
     }
   }
+
+//api to cancel appointment
+ const appointmentCancel = async (req, res) => {
+     try {
+         const { appointmentId } = req.body
+         const appointmentData = await appointmentModel.findById(appointmentId)
+ 
+         await appointmentModel.findByIdAndUpdate(appointmentId, { cancelled: true })
+         //releasing doctor slot
+ 
+         const { docId, slotDate, slotTime } = appointmentData
+         const doctorData = await doctorModel.findById(docId)
+ 
+         let slots_booked = doctorData.slots_booked
+         slots_booked[slotDate] = slots_booked[slotDate].filter(e => e !== slotTime)
+         await doctorModel.findByIdAndUpdate(docId, { slots_booked })
+ 
+         res.json({ success: true, message: "Appointment Cancelled" })
+     } catch (error) {
+         console.log(error)
+         res.json({ success: false, message: error.message })
+ 
+     }
+ }
 // API TO GET DASHBOARD DATA FOR ADMIN  
+ 
 
 
-export { addDoctor, loginAdmin, allDoctors , appointmentsAdmin}
+export { addDoctor, loginAdmin, allDoctors , appointmentsAdmin, appointmentCancel}
