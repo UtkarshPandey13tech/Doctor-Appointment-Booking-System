@@ -279,12 +279,8 @@ This project is licensed under the **MIT License**.
 
 ---
 
-## 👨‍💻 Author
-
-**Utkarsh Pandey**
 
 - GitHub: https://github.com/UtkarshPandey13tech
-- LinkedIn: *(Add your LinkedIn profile here)*
 
 ---
 
