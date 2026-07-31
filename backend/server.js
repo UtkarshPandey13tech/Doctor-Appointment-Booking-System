@@ -15,7 +15,7 @@ dns.setServers(['1.1.1.1' ,'8.8.8.8'])
 //app config - app instance
 const app = express()
 //defining port
-const port = process.env.PORT
+const port = process.env.PORT || 4000
 connectDB()
 connectCloudinary()
 
