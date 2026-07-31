@@ -54,20 +54,35 @@ const Navbar = () => {
             </button>
           )}
 
-          <img onClick={() => setShowMenu(true)} className="w-6 cursor-pointer md:hidden" src={assets.menu_icon} alt="menu" />
+          <img
+  onClick={() => setShowMenu((prev) => !prev)}
+  className="w-6 cursor-pointer md:hidden"
+  src={assets.menu_icon}
+  alt="menu"
+/>
 
-          <div className={`${showMenu ? 'fixed w-full' : 'h-0 w-0'} right-0 top-0 bottom-0 z-20 overflow-hidden bg-white/95 transition-all md:hidden`}>
-            <div className="flex items-center justify-between px-5 py-6">
-              <img className="w-40" src={assets.logo} alt="logo" />
-              <img className="w-7 cursor-pointer" onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="close" />
-            </div>
-            <ul className="mt-5 flex flex-col items-center gap-2 px-5 text-lg font-medium text-slate-700">
-              <NavLink onClick={() => setShowMenu(false)} to="/" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">HOME</NavLink>
-              <NavLink onClick={() => setShowMenu(false)} to="/doctors" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">ALL DOCTORS</NavLink>
-              <NavLink onClick={() => setShowMenu(false)} to="/about" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">ABOUT</NavLink>
-              <NavLink onClick={() => setShowMenu(false)} to="/contact" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">CONTACT</NavLink>
-            </ul>
-          </div>
+<div
+  className={`fixed right-0 top-0 z-50 h-screen w-[80%] max-w-[320px] overflow-y-auto bg-white shadow-2xl transition-transform duration-300 md:hidden ${
+    showMenu ? 'translate-x-0' : 'translate-x-full'
+  }`}
+>
+  <div className="flex items-center justify-between px-5 py-6">
+    <img className="w-40" src={assets.logo} alt="logo" />
+    <img
+      className="w-7 cursor-pointer"
+      onClick={() => setShowMenu(false)}
+      src={assets.cross_icon}
+      alt="close"
+    />
+  </div>
+
+  <ul className="mt-5 flex flex-col items-center gap-2 px-5 text-lg font-medium text-slate-700">
+    <NavLink onClick={() => setShowMenu(false)} to="/" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">HOME</NavLink>
+    <NavLink onClick={() => setShowMenu(false)} to="/doctors" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">ALL DOCTORS</NavLink>
+    <NavLink onClick={() => setShowMenu(false)} to="/about" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">ABOUT</NavLink>
+    <NavLink onClick={() => setShowMenu(false)} to="/contact" className="w-full rounded-2xl px-4 py-2 text-center hover:bg-sky-50 hover:text-sky-700">CONTACT</NavLink>
+  </ul>
+</div>
         </div>
       </div>
     </div>
