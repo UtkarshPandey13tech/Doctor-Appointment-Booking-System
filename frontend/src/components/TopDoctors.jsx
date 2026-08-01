@@ -35,7 +35,7 @@ const TopDoctors = () => {
       </div>
 
       <div className='mt-8 flex justify-center'>
-        <button onClick={() => { navigate('/doctors'); scrollTo(0, 0) }} className='rounded-full bg-gradient-to-r from-sky-600 to-cyan-500 px-8 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-600/20 transition-all duration-200 hover:scale-105'>See More</button>
+        <button onClick={() => { navigate('/doctors'); scrollTo(0, 0) }} className='rounded-full bg-gradient-to-r from-sky-600 to-cyan-500 px-8 py-2.5 text-sm font-semibold text-white shadow-lg shadow-sky-600/20 transition-all duration-200 hover:scale-105 cursor-pointer'>See More</button>
       </div>
     </section>
   )

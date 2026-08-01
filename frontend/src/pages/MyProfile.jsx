@@ -48,7 +48,7 @@ const MyProfile = () => {
 
   return userData && (
     // CSS PROPERTY USES
-    <div className='max-w-lg  flex flex-col gap-2 text-sm'>
+    <div className='max-w-lg flex flex-col gap-2 text-sm'>
 
       {
         isEdit 
@@ -110,7 +110,7 @@ const MyProfile = () => {
               ? <select className='max-w-20 bg-gray-100' onChange={(e) => setUserData(prev => ({ ...prev, gender: e.target.value }))} value={userData.gender}>
                 <option value={"male"}>Male</option>
                 <option value={"female"}>Female</option>
-                <option value={"female"}>Other</option>
+                <option value={"others"}>Other</option>
               </select>
               : <p className='text-gray-400'>{userData.gender}</p>
           }
@@ -124,8 +124,8 @@ const MyProfile = () => {
       <div className='mt-10'>
         {
           isEdit
-            ? <button className='border border-primary px-8 py-2 rounded-full hover:bg-primary hover:text-blue-700 transition-all' onClick={updateUserProfileData}>Save information</button>
-            : <button className='border border-primary px-8 py-2 rounded-full hover:bg-primary hover:text-blue-700 transition-all' onClick={() => setIsEdit(true)}>Edit</button>
+            ? <button className='cursor-pointer border border-primary px-8 py-2 rounded-full hover:bg-primary hover:text-blue-700 transition-all' onClick={updateUserProfileData}>Save information</button>
+            : <button className='cursor-pointer border border-primary px-8 py-2 rounded-full hover:bg-primary hover:text-blue-700 transition-all' onClick={() => setIsEdit(true)}>Edit</button>
         }
       </div>
     </div>

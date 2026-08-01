@@ -16,7 +16,7 @@ const Banner = () => {
             <p>Book Appointment</p>
             <p className="mt-3">With 100+ Trusted Doctors</p>
           </div>
-          <button onClick={() => { navigate('/login'); scroll(0, 0) }} className="mt-6 rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-700 transition-all duration-200 hover:scale-105 hover:shadow-lg sm:text-base">
+          <button onClick={() => { navigate('/login'); scroll(0, 0) }} className="mt-6 rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-700 transition-all duration-200 hover:scale-105 hover:shadow-lg sm:text-base cursor-pointer">
             Create Account
           </button>
         </div>
